@@ -13,11 +13,13 @@
 
         .sidebar {
             border-right: 1px solid #ccc;
-            background-color: #f2f2f2;
+            background-color:rgb(242, 237, 237);
             height: 100vh;
-            width: 170px;
+            width: 250px;
             box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
             visibility: hidden;
+            position: absolute;
+            top:10px;
         }
 
         .menu-item {
@@ -26,18 +28,35 @@
             margin-bottom: 10px;
             display: flex;
             align-items: end;
-            cursor: pointer; 
+            cursor: pointer;
             border-radius: 0 25px 25px 0;
         }
-
+        
         .menu-item:hover {
             background-color: white;
             border: 1px solid black;
         }
+        .menu-item1{
+            padding: 5px;
+            padding-left: 10px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: end;
+            cursor: pointer;
+            border-radius: 0 25px 25px 0;
+        }
+        .menu{
+            padding: 5px;
+            padding-left: 10px;
+            margin-bottom: 10px;
+            border-radius: 0 25px 25px 0;
+            position: absolute;
+            top:2px;
+            left:15px;
+        }
 
         .menu-icon {
             font-size: 20px;
-            ;
         }
 
         .menu-text {
@@ -48,9 +67,10 @@
 
         .hamburger-menu {
             position: fixed;
-            top: 10px;
-            left: 10px;
+            top: 70px;
+            right:110px;
             cursor: pointer;
+            height:160px;
         }
 
         .close-menu {
@@ -58,14 +78,116 @@
             padding: 10px;
             cursor: pointer;
         }
+
+        .students-card
+        {
+            border:1px solid black;
+            padding:10px 20px;
+            margin:10px;
+            border-radius:20px;
+            background-color:rgb(242, 237, 237);
+        }
+        .addstudent-container
+        {
+            padding:10px;
+            margin:0;
+            position:fixed;
+            top:150px;
+            width:100%;
+            display: flex;
+            justify-content:center;
+        }
+        .btn-action
+        {
+            padding:2px 5px;
+            border-radius:30px;
+            min-width:80px;
+            margin-left:10px;
+            margin-right:10px;
+            cursor:pointer;
+        }
+        .student-name
+        {
+            padding:5px;
+            border-radius:30px;
+            margin-right:10px;
+        }
+        .circle
+        {
+            border-radius:50%;
+            margin-left:950px;
+            margin-top:-30px;
+            position: fixed;
+            border:3px solid black;
+        }
+        .heading
+        {
+            display: flex;
+            justify-content: center;
+        }
+        .list
+        {
+            margin-top:100px;
+        }
+        .side{
+            margin-left: 60px;
+           
+            margin-top:15px;
+            border-radius:50%;
+            position:absolute;
+            border:3px solid black;
+        }
+        .length{
+            margin-top:45px;
+        }
+        .length1{
+            margin-top:15px;
+        }
     </style>
 </head>
 
 <body>
+    <h1 class="heading">SINHGAD INSTITUTE OF TECHNOLOGY,LONAVALA</h1>
+    <div>
+    <h1>Welcome, Shradha Mane
+        <img src="user.png"
+        height="40px"
+        width="40px"  
+        class="circle">
+    </h1>
+    </div>
+    <hr/>
+    <h1 class="list">List of books</h1>
+    <div class="addstudent-container">
+    <input type="text" id="students-name"
+    class="student-name"
+    placeholder="Enter book Name"/>
+    <button type="button" class="btn-action" onclick="addstudents()">Add</button>
+    <button type="button" class="btn-action" onclick="removestudents()">Remove</button>
+    </div>
+    <div id="students-container">
+
+    </div>
     <i class="fa-solid fa-bars hamburger-menu" id="hamburger-menu" onclick="openSidebar()"></i>
     <div class="sidebar" id="sidebar">
         <div class="close-menu" onclick="closeSidebar()">
             <i class="fa-solid fa-circle-xmark"></i>
+        </div>
+        <div class="menu">
+            <img src="user.png"
+            height="40px"
+            width="40px"  
+            class="side">
+            </div>
+        <div class="menu-item1">
+            <h3 class="length">Shradha Mane <br>
+                TE BACHELOR OF ENGINEERING
+            </h3>
+        </div>
+        <div class="menu-item1">
+               <h4 class="length1">Stud UID:2433/LSIT/3456/3456 
+                Institute Code : 987654
+               </h4>
         </div>
         <div class="menu-item">
             <i class="fa-solid fa-house menu-icon"></i>
@@ -73,19 +195,23 @@
         </div>
         <div class="menu-item">
             <i class="fa-solid fa-user menu-icon"></i>
-            <a href="#" class="menu-text">About</a>
+            <a href="#" class="menu-text">About STES,Pune</a>
         </div>
         <div class="menu-item">
             <i class="fa-solid fa-envelope menu-icon"></i>
             <a href="#" class="menu-text">Contact</a>
         </div>
         <div class="menu-item">
-            <i class="fa-solid fa-toolbox menu-icon"></i>
-            <a href="#" class="menu-text">Preferences</a>
+            <i class="fa-solid fa-share-nodes menu-icon"></i>
+            <a href="#" class="menu-text">Share App</a>
         </div>
         <div class="menu-item">
             <i class="fa-solid fa-gear menu-icon"></i>
             <a href="#" class="menu-text">Settings</a>
+        </div>
+        <div class="menu-item">
+            <i class="fa-solid fa-heart menu-icon"></i>
+            <a href="#" class="menu-text">Rate Us</a>
         </div>
         <div class="menu-item">
             <i class="fa-solid fa-right-from-bracket"></i>
@@ -107,7 +233,43 @@
             const hamburgerMenuElement = document.getElementById('hamburger-menu');
             hamburgerMenuElement.style.visibility = 'visible';
         }
+
+        function getEmoji()
+        {
+            const emojis = ['📓','📔','📒','📕','📖','📑','📘','📙'];
+            const min = 0;
+            const max = emojis.length-1;
+            const randomIndex = Math.floor(Math.random() * (max - min + 1)) + min;
+            return emojis[randomIndex];
+        }
+        const students = ["AgniPankh","Treasure Island","Wuthering Heights","Don Quixote","Frankenstein"]
+        function loadstudents()
+        {
+            const studentsContainer = document.getElementById("students-container") 
+            studentsContainer.innerHTML = ""
+            for(let i=0;i<students.length;i++)
+            {
+                studentsContainer.innerHTML += `<div class='students-card'> ${getEmoji()} ${i+1} ${students[i]} </div> ` 
+            }
+        }
+        loadstudents();
+        const studentInput = document.getElementById('students-name')
+        function addstudents()
+        {
+            students.push(studentInput.value)
+            studentInput.value = ""
+            loadstudents()
+        }
+        function removestudents()
+        {
+            const studentIndex = students.indexOf(studentInput.value);
+            students.splice(studentIndex,1);
+            loadstudents();
+            studentInput.value = "";
+        }
     </script>
 </body>
-
 </html>
+
+
+   
